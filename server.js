@@ -109,7 +109,7 @@ app.delete('/:att/:att_value', function(req,res){
 	var db = mongoose.connection;
 	db.on('error', console.error.bind(console, 'connection error:'));
 	db.onec('open', function (callback){
-		var Restaurant = mongoose.model('Resaurant', restaurantSchema);
+		var Restaurant = mongoose.model('Restaurant', restaurantSchema);
 
 	Restaurant.remove(criteria,function(err,results){
 		if(err){
