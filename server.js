@@ -161,9 +161,13 @@ app.post('/',function(req,res) {
 		rObj.grades.push(grade0);
 		}
 
+		if(req.body.name!=null){
 		rObj.name = req.body.name;
+		}
+		
+		if(req.body.restaurant_id!=null){
 		rObj.restaurant_id = req.body.restaurant_id;
-
+		}
 		
 
 
