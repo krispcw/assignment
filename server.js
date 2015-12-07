@@ -101,27 +101,27 @@ app.get('/restaurant_id/:id', function(req,res) {
 	});
 });*/
 
-app.delete('/:att/:att_value', function(req,res){
-	var criteria={};
-	criteria[req.params.att] = req.parames.att_value;
-	var restaurantSchema = require('./models.restaurant');	
-	mongoose.connect(MONGODEURL);
+app.delete('/:att/:att_value',function(req,res) {
+
+	var criteria = {};
+	criteria[req.params.att] = req.params.att_value;
+
+	var restaurantSchema = require('./models/restaurant');
+	mongoose.connect(MONGODBURL);
 	var db = mongoose.connection;
 	db.on('error', console.error.bind(console, 'connection error:'));
-	db.onec('open', function (callback){
+	db.once('open', function (callback) {
 		var Restaurant = mongoose.model('Restaurant', restaurantSchema);
-
-	Restaurant.remove(criteria,function(err,results){
-		if(err){
-			res.status(500).json(err);
-			throw err
-		}	
-		db.close();
-  		res.status(200).json({message: 'delete done', id:req.params.id});
-
-
-		});
-	});
+		 Restaurant.remove(criteria,function(err,results){
+       		if (err) {
+				res.status(500).json(err);
+				throw err
+			}
+       		
+       		db.close();
+			res.status(200).json({message: 'delete done', id: req.params.id});
+    	});
+    });
 });
 
 
